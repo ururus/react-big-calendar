@@ -56,11 +56,17 @@ function TimeGridEvent(props) {
             ? (typeof label === 'string' ? label + ': ' : '') + tooltip
             : undefined
         }
-        className={clsx('rbc-event', className, userProps.className, {
-          'rbc-selected': selected,
-          'rbc-event-continues-earlier': continuesEarlier,
-          'rbc-event-continues-later': continuesLater,
-        })}
+        className={clsx(
+          'rbc-event',
+          className,
+          event.className,
+          userProps.className,
+          {
+            'rbc-selected': selected,
+            'rbc-event-continues-earlier': continuesEarlier,
+            'rbc-event-continues-later': continuesLater,
+          }
+        )}
       >
         {inner}
       </div>
