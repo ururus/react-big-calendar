@@ -6,6 +6,7 @@ let defaultMessages = {
   week: 'Week',
   work_week: 'Work Week',
   day: 'Day',
+  year: 'Year',
   month: 'Month',
   previous: 'Back',
   next: 'Next',

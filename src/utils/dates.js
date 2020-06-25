@@ -56,7 +56,6 @@ export function visibleDays(date, localizer) {
     days.push(current)
     current = dates.add(current, 1, 'day')
   }
-
   return days
 }
 

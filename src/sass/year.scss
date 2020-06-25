@@ -1,0 +1,23 @@
+.rbc-year-view{
+  .rbc-month-view{
+    float: left;
+    width: 24%;
+    margin-left: 1%;
+    margin-bottom: 1%;
+    min-height: 160px;
+  }
+  .rbc-month-title{
+    text-align: center;
+  }
+  .rbc-event{
+    height: 10%;
+  }
+  .rbc-off-range-bg{
+    background: transparent;
+    color: black;
+    max-width: 14.28%;
+  }
+  .rbc-date-cell{
+    max-width: 14.28%;
+  }
+}

@@ -80,7 +80,7 @@ class Calendar extends React.Component {
 
     /**
      * The initial view set for the Calendar.
-     * @type Calendar.Views ('month'|'week'|'work_week'|'day'|'agenda')
+     * @type Calendar.Views ('year'|month'|'week'|'work_week'|'day'|'agenda')
      * @default 'month'
      */
     defaultView: PropTypes.string,
@@ -250,7 +250,7 @@ class Calendar extends React.Component {
     /**
      *
      * ```js
-     * (dates: Date[] | { start: Date; end: Date }, view: 'month'|'week'|'work_week'|'day'|'agenda'|undefined) => void
+     * (dates: Date[] | { start: Date; end: Date }, view: 'year'|month'|'week'|'work_week'|'day'|'agenda'|undefined) => void
      * ```
      *
      * Callback fired when the visible date range changes. Returns an Array of dates
@@ -364,7 +364,7 @@ class Calendar extends React.Component {
      * }
      * ```
      *
-     * @type Views ('month'|'week'|'work_week'|'day'|'agenda')
+     * @type Views ('year'|month'|'week'|'work_week'|'day'|'agenda')
      * @View
      ['month', 'week', 'day', 'agenda']
      */
@@ -493,16 +493,16 @@ class Calendar extends React.Component {
      * (date: Date, resourceId: (number|string)) => { className?: string, style?: Object }
      * ```
      */
-	slotPropGetter: PropTypes.func,
-	
-	/**
-	 * Optionally provide a function that returns an object of props to be applied 
-	 * to the time-slot group node. Useful to dynamically change the sizing of time nodes.
-	 * ```js
-	 * () => { style?: Object }
-	 * ```
-	 */
-	slotGroupPropGetter: PropTypes.func,
+    slotPropGetter: PropTypes.func,
+
+    /**
+     * Optionally provide a function that returns an object of props to be applied
+     * to the time-slot group node. Useful to dynamically change the sizing of time nodes.
+     * ```js
+     * () => { style?: Object }
+     * ```
+     */
+    slotGroupPropGetter: PropTypes.func,
 
     /**
      * Optionally provide a function that returns an object of className or style props
@@ -708,6 +708,11 @@ class Calendar extends React.Component {
         dateHeader: PropTypes.elementType,
         event: PropTypes.elementType,
       }),
+      year: PropTypes.shape({
+        header: PropTypes.elementType,
+        dateHeader: PropTypes.elementType,
+        event: PropTypes.elementType,
+      }),
     }),
 
     /**
@@ -718,6 +723,7 @@ class Calendar extends React.Component {
       previous: PropTypes.node,
       next: PropTypes.node,
       today: PropTypes.node,
+      year: PropTypes.node,
       month: PropTypes.node,
       week: PropTypes.node,
       day: PropTypes.node,
@@ -784,8 +790,8 @@ class Calendar extends React.Component {
     resourceIdAccessor,
     resourceTitleAccessor,
     eventPropGetter,
-	slotPropGetter,
-	slotGroupPropGetter,
+    slotPropGetter,
+    slotGroupPropGetter,
     dayPropGetter,
     view,
     views,
@@ -804,9 +810,9 @@ class Calendar extends React.Component {
         eventProp: (...args) =>
           (eventPropGetter && eventPropGetter(...args)) || {},
         slotProp: (...args) =>
-		  (slotPropGetter && slotPropGetter(...args)) || {},
-		slotGroupProp: (...args) =>
-		  (slotGroupPropGetter && slotGroupPropGetter(...args)) || {},
+          (slotPropGetter && slotPropGetter(...args)) || {},
+        slotGroupProp: (...args) =>
+          (slotGroupPropGetter && slotGroupPropGetter(...args)) || {},
         dayProp: (...args) => (dayPropGetter && dayPropGetter(...args)) || {},
       },
       components: defaults(components[view] || {}, omit(components, names), {
@@ -941,7 +947,7 @@ class Calendar extends React.Component {
    *
    * @param date
    * @param viewComponent
-   * @param {'month'|'week'|'work_week'|'day'|'agenda'} [view] - optional
+   * @param {'year'|month'|'week'|'work_week'|'day'|'agenda'} [view] - optional
    * parameter. It appears when range change on view changing. It could be handy
    * when you need to have both: range and view type at once, i.e. for manage rbc
    * state via url
